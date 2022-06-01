@@ -17,17 +17,71 @@
   <div id="root" class="wrapper"></div>
 
   <script type="module">
-    const user = {
-      firstname: 'Joe',
-      secname: 'Doe',
-      fullname: 'Joe Doe',
-    }
-      function getName() {
-        console.log(this.firstname);
+
+
+  const product = {
+      "id": "76w0hz7015kkr9kjkav",
+      "images": [
+        "https://content2.rozetka.com.ua/goods/images/big_tile/163399632.jpg",
+        "https://content.rozetka.com.ua/goods/images/big_tile/163399633.jpg"
+      ],
+      "title": "Ноутбук Acer Aspire 3 A315-57G-336G (NX.HZREU.01S) Charcoal Black",
+      "rating": 2.89,
+      "price": 15999,
+      "category": "laptops",
+      "brand": "acer"
+    };
+
+
+
+     class Component {
+      constructor (someProduct) {
+        this.componentProduct = someProduct;
+
+        this.myrender();
       }
 
-      getName.call(user);
-      getName.call(user);
+      getTemplate () {
+        return `
+        <div class="wrapper">
+        <div class="picture"> <img src="https://placekitten.com/g/293/200" alt=""> </div>
+          <div class="raiting-price">
+            <div class="raiting"> 99.9 <i class="bi bi-star"></i> </div>
+            <div class="price"> 1599</div>
+          </div>
+        <div class="item-title">Ноутбук Acer Aspire 7 A715-75G-51ZW (NH.Q88EU.00P) Charcoal Black</div>
+        <div class="type">laptops</div>
+        <div class="button">ADD TO CART </div>
+
+      </div>
+        `;
+      }
+
+      myrender () {
+        const element = document.createElement('div');
+        element.innerHTML = this.getTemplate();
+        this.componentElement = element;
+      };
+
+
+     }
+      const obj = new Component(product);
+
+     const myRootElement = document.querySelector('#root');
+     myRootElement.append(obj.componentElement);
+      console.error(obj);
+
+
+
+
+
+
+
+
+
+
+
+
 /*
     import Card from './index.js';
 
