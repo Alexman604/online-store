@@ -1,47 +1,56 @@
 /* put your styles in this file */
 .wrapper {
+    /*box-shadow: 5px 5px 5px black;*/
     max-width: 317px;
     height: 364px;
-    background-color: aqua;
+    /*background-color: aqua;*/
     display: flex;
     border-radius: 10px;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
 
   }
 
   .picture {
-    margin-top: 10px;
-    width: 293px;
-    height: 200px;
-    background-color: brown;
+    display: flex;
+    margin: 5% auto;
+    justify-content:center;
+    width: 293px;;
+    height: 293px;
+    /*background-color: brown;*/
+    overflow: hidden;
+
 
   }
 
   .raiting-price {
     width: 293px;
-    background-color: blue;
+    /*background-color: blue;*/
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 
   }
   .raiting {
-  background-color: darkviolet;
-    font-size: 13px;
+    background-color: rgb(111, 88, 247);
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
   }
   .item-title {
-    font-size: 14px;
-    background-color:red;
+    font-size: 16px;
+    /*background-color:red;*/
     width: 293px;
 
   }
   .type {
     width: 293px;
     text-align: left;
-    background-color: darkorange;
+    font-size: 12px;
+   /* background-color: darkorange;*/
   }
 
   .button {
@@ -50,6 +59,7 @@
     line-height: 40px;
     width: 317px;
     height: 40px;
-    background-color: blueviolet;
+    color: white;
+    background-color: rgb(111, 88, 247);
     border-radius: 0px 0px 10px 10px;
   }
