@@ -1,0 +1,40 @@
+[33mcommit bbb273c0cce782f063a24de3892e217a2b7f493a[m[33m ([m[1;36mHEAD -> [m[1;32mupdate[m[33m, [m[1;31morigin/update[m[33m)[m
+Author: Alexman604 <102416562+Alexman604@users.noreply.github.com>
+Date:   Tue May 31 22:42:54 2022 +0300
+
+    Update index.html
+    
+    UPD
+
+[1mdiff --git a/src/components/card/02-js-task/index.html b/src/components/card/02-js-task/index.html[m
+[1mindex dca039f..52e9ccf 100755[m
+[1m--- a/src/components/card/02-js-task/index.html[m
+[1m+++ b/src/components/card/02-js-task/index.html[m
+[36m@@ -17,6 +17,18 @@[m
+   <div id="root" class="wrapper"></div>[m
+ [m
+   <script type="module">[m
+[32m+[m[32m    const user = {[m
+[32m+[m[32m      firstname: 'Joe',[m
+[32m+[m[32m      secname: 'Doe',[m
+[32m+[m[32m      fullname: 'Joe Doe',[m
+[32m+[m[32m    }[m
+[32m+[m[32m      function getName() {[m
+[32m+[m[32m        console.log(this.firstname);[m
+[32m+[m[32m      }[m
+[32m+[m
+[32m+[m[32m      getName.call(user);[m
+[32m+[m[32m      getName.call(user);[m
+[32m+[m[32m/*[m
+     import Card from './index.js';[m
+ [m
+     const product = {[m
+[36m@@ -34,7 +46,7 @@[m
+ [m
+     const card = new Card(product);[m
+ [m
+[31m-    root.append(card.element);[m
+[32m+[m[32m    root.append(card.element); */[m
+   </script>[m
+ </body>[m
+ </html>[m
