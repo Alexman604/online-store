@@ -1,69 +1,40 @@
 export default class Pagination {
-constructor () {
+
+  DefaultPagesSize = 10;
+
+  constructor ({activePageIndex = 0} = {}) {
+  this.activePageIndex = activePageIndex;
   this.render();
 }
 
 getTemplate () {
  return `
- <div>
- <div>  left </div>
- <div> pages </div>
- <div> right </div>
- </div>
+ <nav class="os-pagination">
+ <a href="#" class="page-link previous" data-element="nav-prev">  <i class="bi bi-chevron-left"></i> </a>
+ ${this.getPages()}
+ <a href="#" class="page-link next" data-element="nav-next"> <i class="bi bi-chevron-right"></i> </a>
+ </nav>
  `;
 
 }
 
 getPages (){
 return `
-<div class="wrapper">
-    <nav class="os-pagination">
-      <a href="#" class="page-link previous" data-element="nav-prev">
-        <i class="bi bi-chevron-left"></i>
-      </a>
-
-      <ul class="page-list" data-element="pagination">
-        <li>
-          <a href="#" data-element="page-link" class="page-link active" data-page-index="0">1</a>
-        </li>
-        <li>
-          <a href="#" data-element="page-link" class="page-link" data-page-index="1">2</a>
-        </li>
-        <li>
-          <a href="#" data-element="page-link" class="page-link" data-page-index="2">3</a>
-        </li>
-        <li>
-          <a href="#" data-element="page-link" class="page-link" data-page-index="3">4</a>
-        </li>
-        <li>
-          <a href="#" data-element="page-link" class="page-link" data-page-index="4">5</a>
-        </li>
-        <li>
-          <a href="#" data-element="page-link" class="page-link" data-page-index="5">6</a>
-        </li>
-        <li>
-          <a href="#" data-element="page-link" class="page-link" data-page-index="6">7</a>
-        </li>
-        <li>
-          <a href="#" data-element="page-link" class="page-link" data-page-index="7">8</a>
-        </li>
-        <li>
-          <a href="#" data-element="page-link" class="page-link" data-page-index="8">9</a>
-        </li>
-        <li>
-          <a href="#" data-element="page-link" class="page-link" data-page-index="9">10</a>
-        </li>
-      </ul>
-
-      <a href="#" class="page-link next" data-element="nav-next">
-        <i class="bi bi-chevron-right"></i>
-      </a>
-
-    </nav>
-  </div>
-
+    <ul class="page-list">
+        ${new Array(this.DefaultPagesSize).fill(1).map((item, index) => {
+          return this.getPageTemlate(index);
+        }).join('')}
+    </ul>
 `;
 }
+
+  getPageTemlate(pageIndex = 0){
+    const isActive = pageIndex === this.activePageIndex ? 'active': '';
+    return ` <li>
+    <a href="#" data-element="page-link" class="page-link ${isActive}" data-page-index="${pageIndex}">${pageIndex + 1}</a>
+  </li>
+    `
+  };
 
 render () {
   const wrapper = document.createElement('div');
