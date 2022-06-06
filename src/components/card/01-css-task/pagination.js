@@ -5,6 +5,7 @@ export default class Pagination {
   constructor ({activePageIndex = 0} = {}) {
   this.activePageIndex = activePageIndex;
   this.render();
+  this.addEventListener();
 }
 
 getTemplate () {
@@ -20,7 +21,7 @@ getTemplate () {
 
 getPages (){
 return `
-    <ul class="page-list">
+    <ul class="page-list" data-element="pagination">
         ${new Array(this.DefaultPagesSize).fill(1).map((item, index) => {
           return this.getPageTemlate(index);
         }).join('')}
@@ -36,11 +37,55 @@ return `
     `
   };
 
+  setPage (pageIndex = 0){
+    if (pageIndex === this.activePageIndex) return;
+    if (pageIndex > this.DefaultPagesSize -1 || pageIndex < 0) return;
+    const activePage = this.element.querySelector('.page-link.active');
+    if (activePage) {
+      activePage.classList.remove('active');
+    }
+    const nextActivePage = this.element.querySelector(`[data-page-index = "${pageIndex}"]`);
+    if (nextActivePage) {
+      nextActivePage.classList.add('active');}
+      this.activePageIndex = pageIndex;
+  };
+
+  nextPage () {
+    const nextPageIndex = this.activePageIndex + 1;
+    this.setPage(nextPageIndex);
+
+  };
+
+  prevPage (pageIndex = 0){
+    const prevPageIndex = this.activePageIndex - 1;
+    this.setPage(prevPageIndex);
+
+  };
+
 render () {
   const wrapper = document.createElement('div');
-
   wrapper.innerHTML = this.getTemplate();
-
   this.element = wrapper;
 };
+ addEventListener() {
+  const prevPageBtn = this.element.querySelector(`[data-element="nav-prev"]`);
+  const nextPageBtn = this.element.querySelector(`[data-element="nav-next"]`);
+
+  const pageList = this.element.querySelector(`[data-element="pagination"]`);
+
+  console.log(pageList)
+  prevPageBtn.addEventListener('click', () => {this.prevPage()});
+  nextPageBtn.addEventListener('click', () => {this.nextPage()});
+  pageList.addEventListener('click', event => {
+    const pageItem = event.target.closest('.page-link');
+    if (!pageItem) return;
+    const {pageIndex} = pageItem.dataset;
+
+    this.setPage(parseInt(pageIndex, 10));
+  })
+
+ };
+
+
+
 };
