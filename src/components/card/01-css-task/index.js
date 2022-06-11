@@ -1,35 +1,67 @@
-export default class Card {
-  constructor (someProduct) {
-    this.state = someProduct;
-    this.myrender();
-  }
-
-  getTemplate () {
-    return `
-    <div class="wrapper">
-    <div class="picture"> <img src="${this.state.images[0]}" alt=""> </div>
-      <div class="raiting-price">
-        <div class="raiting"> ${this.state.rating} <i class="bi bi-star"></i> </div>
-        <div class="price"> ${this.state.price} </div>
-      </div>
-    <div class="item-title">${this.state.title}</div>
-    <div class="type">${this.state.category}</div>
-    <div class="button">ADD TO CART </div>
-
-  </div>`;
-  }
-
-  update(data = {}) {
-    this.state = data;
-    this.componentElement.innerHTML = this.getTemplate();
+import Card from './card.js';
+import Pagination from './pagination.js';
+console.log(Card);
+const product = {
+    "id": "76w0hz7015kkr9kjkav",
+    "images": [
+      "https://content2.rozetka.com.ua/goods/images/big_tile/163399632.jpg",
+      "https://content.rozetka.com.ua/goods/images/big_tile/163399633.jpg"
+    ],
+    "title": "Ноутбук Acer Aspire 3 A315-57G-336G (NX.HZREU.01S) Charcoal Black",
+    "rating": 2.89,
+    "price": 15999,
+    "category": "laptops",
+    "brand": "acer"
   };
 
-  myrender () {
-    const element = document.createElement('div');
-    element.innerHTML = this.getTemplate();
-    this.componentElement = element;
-  };
- }
+  export default class OnlineStorePage {
+  constructor () {
+    this.components = {}
+    this.initComponents()
+    this.render();
+    this.renderComponents;
+  }
+
+    getTemplate () {
+      return `
+        <div >
+          <div data-element="card"> <!-- Card Component--!></div>
+          <div data-element="Pagination"> <!--- Pagination!--></div>
+        </div>
+      `;
+    }
+    initComponents () {
+      const card = new Card(product);
+      const pagination = new Pagination({
+        //totalElements: 35,
+        activePageIndex:2,
+       // pageSize: 8
+      });
+      this.components.card = card;
+      this.components.pagination = pagination;
+    };
+
+
+    renderComponents () {
+      const cardContainer = this.element.querySelector('[data-element="card"] ');
+      const paginationContainer = this.element.querySelector('[data-element="pagination"] ');
+
+      cardContainer.append(this.components.card.componentElement);
+      paginationContainer.append(this.components.pagination.element);
+    };
+
+    render() {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = this.getTemplate();
+    this.element = wrapper.firstElementChild;
+
+
+  }
+
+
+  }
+
+
 
 
 

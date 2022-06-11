@@ -16,41 +16,10 @@
   <div id="root" class="wrapper1">
 
   <script type="module">
-    import Card from './index.js';
-    import Pagination from './pagination.js';
-
-    const product = {
-        "id": "76w0hz7015kkr9kjkav",
-        "images": [
-          "https://content2.rozetka.com.ua/goods/images/big_tile/163399632.jpg",
-          "https://content.rozetka.com.ua/goods/images/big_tile/163399633.jpg"
-        ],
-        "title": "Ноутбук Acer Aspire 3 A315-57G-336G (NX.HZREU.01S) Charcoal Black",
-        "rating": 2.89,
-        "price": 15999,
-        "category": "laptops",
-        "brand": "acer"
-      };
-
-     const monitor = {
-      "id": "93nmu5dyv9ckr9kjkav",
-      "images": [
-      "https://content2.rozetka.com.ua/goods/images/big_tile/176308948.jpg",
-      "https://content2.rozetka.com.ua/goods/images/big_tile/176308949.jpg",
-      "https://i1.rozetka.ua/promotions/constructors/2074/2074368.png"],
-      "title": "Монитор 23.8\" Asus TUF Gaming VG249Q1A (90LM06J1-B01170) + Asus TUF M3 USB (90MP01J0-B0UA00) у подарунок!",
-      "rating": 1.39,
-      "price": 6500,
-      "category": "monitors",
-      "brand": "asus"};
-
-
-      const card = new Card(product);
-      const pagination = new Pagination({activePageIndex:3});
-
-      const someElement = document.querySelector('#root');
-      someElement.append(card.componentElement);
-      someElement.append(pagination.element);
+    import OnlineStorePage from './index.js'
+    const someElement = document.querySelector('#root');
+    const page = new OnlineStorePage();
+      someElement.append(page.element);
 
      // pagination.setPage(8);
       //pagination.nextPage();
