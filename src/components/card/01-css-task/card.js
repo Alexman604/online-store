@@ -27,7 +27,7 @@ export default class Card {
   myrender () {
     const element = document.createElement('div');
     element.innerHTML = this.getTemplate();
-    this.componentElement = element;
+    this.element = element;
   };
  }
 

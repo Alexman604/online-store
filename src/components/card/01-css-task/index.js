@@ -1,6 +1,6 @@
 import Card from './card.js';
 import Pagination from './pagination.js';
-console.log(Card);
+
 const product = {
     "id": "76w0hz7015kkr9kjkav",
     "images": [
@@ -16,17 +16,17 @@ const product = {
 
   export default class OnlineStorePage {
   constructor () {
-    this.components = {}
-    this.initComponents()
+    this.components = {};
+    this.initComponents();
     this.render();
-    this.renderComponents;
-  }
+    this.renderComponents();
+  };
 
     getTemplate () {
       return `
-        <div >
-          <div data-element="card"> <!-- Card Component--!></div>
-          <div data-element="Pagination"> <!--- Pagination!--></div>
+        <div>
+          <div data-element="card"> <!-- Card Component--!> </div>
+          <div data-element="pagination"> <!--- Pagination!--> </div>
         </div>
       `;
     }
@@ -43,10 +43,10 @@ const product = {
 
 
     renderComponents () {
-      const cardContainer = this.element.querySelector('[data-element="card"] ');
-      const paginationContainer = this.element.querySelector('[data-element="pagination"] ');
+      const cardContainer = this.element.querySelector(`[data-element="card"]`);
+      const paginationContainer = this.element.querySelector(`[data-element="pagination"]`);
 
-      cardContainer.append(this.components.card.componentElement);
+      cardContainer.append(this.components.card.element);
       paginationContainer.append(this.components.pagination.element);
     };
 
@@ -54,7 +54,6 @@ const product = {
     const wrapper = document.createElement('div');
     wrapper.innerHTML = this.getTemplate();
     this.element = wrapper.firstElementChild;
-
 
   }
 

@@ -73,7 +73,7 @@ render () {
 
   const pageList = this.element.querySelector(`[data-element="pagination"]`);
 
-  console.log(pageList)
+  
   prevPageBtn.addEventListener('click', () => {this.prevPage()});
   nextPageBtn.addEventListener('click', () => {this.nextPage()});
   pageList.addEventListener('click', event => {
