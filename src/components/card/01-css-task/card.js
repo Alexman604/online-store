@@ -28,8 +28,13 @@ export default class Card {
     const element = document.createElement('div');
     element.innerHTML = this.getTemplate();
     this.element = element;
+
   };
- }
+ 
+
+}
+
+
 
 
 

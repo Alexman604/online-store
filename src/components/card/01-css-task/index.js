@@ -1,52 +1,46 @@
-import Card from './card.js';
+import CardsList from "./cards-list.js"
+
 import Pagination from './pagination.js';
 
-const product = {
-    "id": "76w0hz7015kkr9kjkav",
-    "images": [
-      "https://content2.rozetka.com.ua/goods/images/big_tile/163399632.jpg",
-      "https://content.rozetka.com.ua/goods/images/big_tile/163399633.jpg"
-    ],
-    "title": "Ноутбук Acer Aspire 3 A315-57G-336G (NX.HZREU.01S) Charcoal Black",
-    "rating": 2.89,
-    "price": 15999,
-    "category": "laptops",
-    "brand": "acer"
-  };
-
   export default class OnlineStorePage {
-  constructor () {
+
+    constructor (products) {
+    this.pageSize = 3;
+    this. products = products
     this.components = {};
     this.initComponents();
     this.render();
     this.renderComponents();
+    this.initEventListeners();
+
   };
 
     getTemplate () {
       return `
         <div>
-          <div data-element="card"> <!-- Card Component--!> </div>
+          <div data-element="cards-list"> <!-- Card Component--!> </div>
           <div data-element="pagination"> <!--- Pagination!--> </div>
         </div>
       `;
     }
     initComponents () {
-      const card = new Card(product);
+      const totalPages = Math.ceil(this.products.length / this.pageSize);
+      const cards = new CardsList(this.products.slice(0, this.pageSize));
+
       const pagination = new Pagination({
-        //totalElements: 35,
-        activePageIndex:2,
-       // pageSize: 8
+        activePageIndex: 0,
+        totalPages
       });
-      this.components.card = card;
+      this.components.cards = cards;
       this.components.pagination = pagination;
     };
 
 
     renderComponents () {
-      const cardContainer = this.element.querySelector(`[data-element="card"]`);
+      const cardsContainer = this.element.querySelector(`[data-element="cards-list"]`);
       const paginationContainer = this.element.querySelector(`[data-element="pagination"]`);
 
-      cardContainer.append(this.components.card.element);
+      cardsContainer.append(this.components.cards.element);
       paginationContainer.append(this.components.pagination.element);
     };
 
@@ -56,7 +50,15 @@ const product = {
     this.element = wrapper.firstElementChild;
 
   }
+    initEventListeners () {
+      this.components.pagination.element.addEventListener('foo-bar', event =>{
+        const pageIndex = event.detail;
+        const start = pageIndex * this.pageSize;
+        const end = start + this.pageSize;
+        this.components.cards.update(this.products.slice(start, end));
+      })
 
+    }
 
   }
 

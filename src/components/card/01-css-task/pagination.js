@@ -1,11 +1,12 @@
 export default class Pagination {
-
-  DefaultPagesSize = 10;
-
-  constructor ({activePageIndex = 0} = {}) {
+  constructor ({
+  activePageIndex = 0,
+  totalPages = 0} = {}) {
   this.activePageIndex = activePageIndex;
+  this.totalPages = totalPages;
   this.render();
   this.addEventListener();
+  this.setPage();
 }
 
 getTemplate () {
@@ -20,9 +21,10 @@ getTemplate () {
 }
 
 getPages (){
+
 return `
     <ul class="page-list" data-element="pagination">
-        ${new Array(this.DefaultPagesSize).fill(1).map((item, index) => {
+        ${new Array(this.totalPages).fill(1).map((item, index) => {
           return this.getPageTemlate(index);
         }).join('')}
     </ul>
@@ -38,8 +40,11 @@ return `
   };
 
   setPage (pageIndex = 0){
+
     if (pageIndex === this.activePageIndex) return;
-    if (pageIndex > this.DefaultPagesSize -1 || pageIndex < 0) return;
+
+    if (pageIndex > this.totalPages -1 || pageIndex < 0) return;
+    this.dispatchSomeEvent(pageIndex);
     const activePage = this.element.querySelector('.page-link.active');
     if (activePage) {
       activePage.classList.remove('active');
@@ -73,7 +78,7 @@ render () {
 
   const pageList = this.element.querySelector(`[data-element="pagination"]`);
 
-  
+
   prevPageBtn.addEventListener('click', () => {this.prevPage()});
   nextPageBtn.addEventListener('click', () => {this.nextPage()});
   pageList.addEventListener('click', event => {
@@ -86,6 +91,11 @@ render () {
 
  };
 
-
+dispatchSomeEvent(pageIndex) {
+  const customEvent = new CustomEvent('foo-bar', {
+    detail: pageIndex
+  })
+  this.element.dispatchEvent(customEvent);
+}
 
 };

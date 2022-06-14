@@ -16,12 +16,16 @@
   <div id="root" class="wrapper1">
 
   <script type="module">
-    import OnlineStorePage from './index.js'
-    const someElement = document.querySelector('#root');
-    const page = new OnlineStorePage();
+
+      import OnlineStorePage from './index.js'
+      import { products } from "./products.js"
+
+      const someElement = document.querySelector('#root');
+      const page = new OnlineStorePage(products);
+
       someElement.append(page.element);
-     
-     // pagination.setPage(8);
+
+      // pagination.setPage(8);
       //pagination.nextPage();
       //pagination.nextPage();
     </script>
