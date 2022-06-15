@@ -14,16 +14,20 @@
 <body>
 <main>
   <div id="root" class="wrapper1">
+    
 
   <script type="module">
 
       import OnlineStorePage from './index.js'
-      import { products } from "./products.js"
 
-      const someElement = document.querySelector('#root');
-      const page = new OnlineStorePage(products);
+      fetch('https://online-store.bootcamp.place/api/products')
+       .then(response => response.json())
+        .then(products => {
 
-      someElement.append(page.element);
+        const someElement = document.querySelector('#root');
+        const page = new OnlineStorePage(products);
+        someElement.append(page.element);
+      });
 
       // pagination.setPage(8);
       //pagination.nextPage();
