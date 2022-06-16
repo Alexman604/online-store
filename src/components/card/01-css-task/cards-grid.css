@@ -7,19 +7,20 @@
 .nowrap {
   height: 100%;
   display: flex;
-
+  justify-content: center;
 }
 .row {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
-div[class^='col-'] {
+ /* div[class^='col-'] {
   outline: 1px solid red;
   background: lightgray;
   text-align: center;
-}
+} */
 
 .col-1 {
   width: calc(100% / 12);

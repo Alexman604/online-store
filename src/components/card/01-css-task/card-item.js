@@ -6,8 +6,6 @@ export default class Card {
 
   getTemplate () {
     return `
-
-      <div class="wrapper">
        <div class="picture"> <img src="${this.state.images[0]}" alt=""> </div>
        <div class="raiting-price">
         <div class="raiting"> ${this.state.rating} <i class="bi bi-star"></i> </div>
@@ -16,8 +14,7 @@ export default class Card {
          <div class="item-title">${this.state.title}</div>
          <div class="type">${this.state.category}</div>
           <div class="button">ADD TO CART </div>
-
-        </div>`;
+        `;
   }
 
   update(data = {}) {
@@ -27,6 +24,7 @@ export default class Card {
 
   myrender () {
     const element = document.createElement('div');
+    element.className = "wrapper"
     element.innerHTML = this.getTemplate();
     this.element = element;
 

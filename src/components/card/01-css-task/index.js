@@ -5,8 +5,8 @@ import Pagination from './pagination.js';
   export default class OnlineStorePage {
 
     constructor (products) {
-    this.pageSize = 9;
-    this. products = products
+    this.pageSize = 5;
+    this.products = products
     this.components = {};
     this.initComponents();
     this.render();
