@@ -6,17 +6,18 @@ export default class Card {
 
   getTemplate () {
     return `
-    <div class="wrapper">
-    <div class="picture"> <img src="${this.state.images[0]}" alt=""> </div>
-      <div class="raiting-price">
+
+      <div class="wrapper">
+       <div class="picture"> <img src="${this.state.images[0]}" alt=""> </div>
+       <div class="raiting-price">
         <div class="raiting"> ${this.state.rating} <i class="bi bi-star"></i> </div>
         <div class="price"> ${this.state.price} </div>
-      </div>
-    <div class="item-title">${this.state.title}</div>
-    <div class="type">${this.state.category}</div>
-    <div class="button">ADD TO CART </div>
+        </div>
+         <div class="item-title">${this.state.title}</div>
+         <div class="type">${this.state.category}</div>
+          <div class="button">ADD TO CART </div>
 
-  </div>`;
+        </div>`;
   }
 
   update(data = {}) {
@@ -30,7 +31,7 @@ export default class Card {
     this.element = element;
 
   };
- 
+
 
 }
 

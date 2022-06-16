@@ -5,7 +5,7 @@ import Pagination from './pagination.js';
   export default class OnlineStorePage {
 
     constructor (products) {
-    this.pageSize = 3;
+    this.pageSize = 9;
     this. products = products
     this.components = {};
     this.initComponents();
@@ -18,7 +18,7 @@ import Pagination from './pagination.js';
     getTemplate () {
       return `
         <div>
-          <div data-element="cards-list"> <!-- Card Component--!> </div>
+          <div class="container nowrap" data-element="cards-list"> <!-- Card Component--!> </div>
           <div data-element="pagination"> <!--- Pagination!--> </div>
         </div>
       `;
@@ -46,6 +46,8 @@ import Pagination from './pagination.js';
 
     render() {
     const wrapper = document.createElement('div');
+    wrapper.className = "col-12 col-m-6 col-l-4";
+    console.log(wrapper);
     wrapper.innerHTML = this.getTemplate();
     this.element = wrapper.firstElementChild;
 

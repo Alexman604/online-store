@@ -1,4 +1,4 @@
-import Card from "./card.js";
+import Card from "./card-item.js";
 
 export default class CardsList {
     constructor(data = []) {
@@ -10,10 +10,10 @@ export default class CardsList {
 
      getTemplate() {
        return `
-        <div><div class = "os-products-list" data-element="body">
-       <!-- Cards LIST --!>
+       <div class="col-12 col-m-9 col-l-10"> right side
+         <div class="right-box row" data-element = "body">
+          !-- <div class="col-12 col-m-6 col-l-4"> card 1 </div>--!
         </div>
-       </div>
       `;
 
   };
@@ -23,13 +23,13 @@ export default class CardsList {
     const wrapper = document.createElement('div');
 
     wrapper.innerHTML = this.getTemplate();
-
     this.element = wrapper.firstElementChild;
+    
 
   };
 
   renderCards() {
-    console.log(this.data);
+
     const cards = this.data.map(item => {
       const card = new Card(item);
       return card.element});
