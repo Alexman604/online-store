@@ -11,11 +11,11 @@ export default class Card {
         <div class="raiting"> ${this.state.rating} <i class="bi bi-star"></i> </div>
         <div class="price"> ${this.state.price} </div>
         </div>
-         <div class="item-title">${this.state.title}</div>
-         <div class="type">${this.state.category}</div>
-          <div class="button">ADD TO CART </div>
+        <div class="item-title">${this.state.title}</div>
+        <div class="type">${this.state.category}</div>
+        <div class="button">ADD TO CART </div>
         `;
-  }
+     };
 
   update(data = {}) {
     this.state = data;
@@ -24,7 +24,7 @@ export default class Card {
 
   myrender () {
     const element = document.createElement('div');
-    element.className = "wrapper"
+    element.className = "wrapper";
     element.innerHTML = this.getTemplate();
     this.element = element;
 

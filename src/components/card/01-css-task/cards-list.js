@@ -18,32 +18,32 @@ export default class CardsList {
 
         };
 
-  render() {
+    render() {
     const wrapper = document.createElement('div');
     wrapper.innerHTML = this.getTemplate();
     this.element = wrapper.firstElementChild;
+    };
 
-
-  };
-
-  renderCards() {
+    renderCards() {
 
     const cards = this.data.map(item => {
       const card = new Card(item);
       return card.element});
-     const body = this.element.querySelector(`[data-element="body"]`);
+      const body = this.element.querySelector(`[data-element="body"]`);
       body.innerHTML = '';
      body.append(...cards);
     };
 
-    update (data =[]) {
+    update (data = [] ) {
       this.data = data;
-
       this.renderCards();
     }
 
 
   };
+
+
+
 
 
 

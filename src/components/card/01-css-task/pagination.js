@@ -28,8 +28,8 @@ return `
           return this.getPageTemlate(index);
         }).join('')}
     </ul>
-`;
-}
+  `;
+  }
 
   getPageTemlate(pageIndex = 0){
     const isActive = pageIndex === this.activePageIndex ? 'active': '';
@@ -96,6 +96,6 @@ dispatchSomeEvent(pageIndex) {
     detail: pageIndex
   })
   this.element.dispatchEvent(customEvent);
-}
+};
 
 };

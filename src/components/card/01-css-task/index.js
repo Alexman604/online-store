@@ -1,19 +1,33 @@
 import CardsList from "./cards-list.js"
-
 import Pagination from './pagination.js';
 
-  export default class OnlineStorePage {
+//products?_page=3&_limit=3
 
-    constructor (products) {
-    this.pageSize = 5;
-    this.products = products
+const BACKEND_URL = 'https://online-store.bootcamp.place/api/';
+  export default class OnlineStorePage {
+    constructor () {
+    this.products = [];
+    this.pageSize = 9;
+
+    this.url = new URL('products', BACKEND_URL);
+    this.url.searchParams.set('_limit', this.pageSize);
+
     this.components = {};
     this.initComponents();
     this.render();
     this.renderComponents();
     this.initEventListeners();
-
+    this.update(1);
   };
+
+    async loadData (pageNumber) {
+      this.url.searchParams.set('_page', pageNumber);
+
+      const response = await fetch(this.url);
+      const products = await response.json();
+      return products;
+
+    };
 
     getTemplate () {
       return `
@@ -23,14 +37,17 @@ import Pagination from './pagination.js';
         </div>
       `;
     }
+
     initComponents () {
-      const totalPages = Math.ceil(this.products.length / this.pageSize);
-      const cards = new CardsList(this.products.slice(0, this.pageSize));
+      const totalElemets = 100;
+      const totalPages = Math.ceil(totalElemets / this.pageSize);
+      const cards = new CardsList(this.products);
 
       const pagination = new Pagination({
         activePageIndex: 0,
         totalPages
       });
+
       this.components.cards = cards;
       this.components.pagination = pagination;
     };
@@ -47,21 +64,27 @@ import Pagination from './pagination.js';
     render() {
     const wrapper = document.createElement('div');
     wrapper.className = "col-12 col-m-6 col-l-4";
-    console.log(wrapper);
+
     wrapper.innerHTML = this.getTemplate();
     this.element = wrapper.firstElementChild;
 
-  }
+    };
+
     initEventListeners () {
       this.components.pagination.element.addEventListener('foo-bar', event =>{
         const pageIndex = event.detail;
-        const start = pageIndex * this.pageSize;
-        const end = start + this.pageSize;
-        this.components.cards.update(this.products.slice(start, end));
+        this.update(pageIndex + 1);
       })
 
     }
 
+
+    async update(pageNumber) {
+
+      const data = await this.loadData(pageNumber);
+      this.components.cards.update(data);
+
+    }
   }
 
 
